@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "parcel-transformer-handlebars": "^1.0.0"
+  }
+}

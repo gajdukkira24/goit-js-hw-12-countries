@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+  
+  input {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+  
+  .country-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .country-item {
+    background-color: #fff;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .country-item img {
+    width: 30px;
+    height: 20px;
+    object-fit: cover;
+  }
+  
+  .country-info {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    width: 350px;
+  }
+  
+  .country-info h2 {
+    margin-top: 0;
+  }
+  

@@ -1,67 +1,80 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="uk">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Search App</title>
+  <head>
+    <meta charset="utf-8" />
+<script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Пошук країн</title>
+
+
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body>
+    <main class="app" role="main" aria-labelledby="app-title">
+      <h1 id="app-title">Пошук країн</h1>
+
+      <section class="search-section" aria-label="Пошук країн">
+        <label for="search-box" class="visually-hidden">Введіть назву країни</label>
+        <input
+          id="search-box"
+          type="text"
+          placeholder="Введи назву країни..."
+          autocomplete="off"
+          aria-autocomplete="list"
+          aria-controls="country-list"
+        />
+      </section>
+
+      <section class="results" aria-live="polite">
+
+        <ul id="country-list" class="country-list" role="list"></ul>
+
+     
+        <div id="country-info" class="country-info-container"></div>
+      </section>
+    </main>
+
+
+    <script id="country-item-template" type="text/x-handlebars-template">
+      <li class="country-item" role="listitem" data-name="{{name.common}}">
+        <img src="{{flags.svg}}" alt="Прапор {{name.common}}" width="40" height="25" />
+        <div class="country-item-text">
+          <strong>{{name.common}}</strong>
+          {{#if capital}}
+            <div class="small">Столиця: {{capital.[0]}}</div>
+          {{/if}}
+        </div>
+      </li>
+    </script>
+
+
+    <script id="country-info-template" type="text/x-handlebars-template">
+      <article class="country-info" aria-label="Інформація про країну">
+        <header class="country-header">
+          <img src="{{flags.svg}}" alt="Прапор {{name.common}}" width="80" height="50" />
+          <h2>{{name.common}} <small>({{name.official}})</small></h2>
+        </header>
+        <dl>
+          {{#if capital}}
+            <dt>Столиця</dt><dd>{{capital.[0]}}</dd>
+          {{/if}}
+          {{#if population}}
+            <dt>Населення</dt><dd>{{population}}</dd>
+          {{/if}}
+          {{#if languages}}
+            <dt>Мови</dt>
+            <dd>
+              {{#each languages}}
+                {{this}}{{#unless @last}}, {{/unless}}
+              {{/each}}
+            </dd>
+          {{/if}}
+        </dl>
+      </article>
+    </script>
 
  
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pnotify/core/dist/PNotify.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@pnotify/core/dist/BrightTheme.css" />
-  <script src="https://cdn.jsdelivr.net/npm/@pnotify/core/dist/PNotify.js"></script>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-
-    form {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-    }
-
-    input {
-      flex: 1;
-      padding: 8px;
-      font-size: 16px;
-    }
-
-    button {
-      padding: 8px 15px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-
-    ul {
-      padding: 0;
-      list-style: none;
-    }
-
-    .result-item {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      margin-bottom: 10px;
-    }
-  </style>
-</head>
-
-<body>
-
-  <h1>Пошук</h1>
-
- 
-  <form id="search-form">
-    <input type="text" name="query" placeholder="Введи запит..." required />
-    <button type="submit">Пошук</button>
-  </form>
-
-
-  <ul id="results-list"></ul>
-  <script src="https://cdn.jsdelivr.net/npm/izitoast/dist/js/iziToast.min.js"></script>
-  <script src="./script.js"></script>
-
-</body>
+    <script type="module" src="./script.js"></script>
+  </body>
 </html>
