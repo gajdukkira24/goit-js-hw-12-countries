@@ -2,79 +2,53 @@
 <html lang="uk">
   <head>
     <meta charset="utf-8" />
-<script src="https://cdn.jsdelivr.net/npm/handlebars@4.7.7/dist/handlebars.min.js"></script>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Пошук країн</title>
 
-
     <link rel="stylesheet" href="./style.css" />
+
+
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
   </head>
 
   <body>
-    <main class="app" role="main" aria-labelledby="app-title">
-      <h1 id="app-title">Пошук країн</h1>
+    <main class="app">
+      <h1>Пошук країн</h1>
 
-      <section class="search-section" aria-label="Пошук країн">
-        <label for="search-box" class="visually-hidden">Введіть назву країни</label>
+      <section class="search-section">
         <input
           id="search-box"
           type="text"
           placeholder="Введи назву країни..."
           autocomplete="off"
-          aria-autocomplete="list"
-          aria-controls="country-list"
         />
       </section>
 
-      <section class="results" aria-live="polite">
-
-        <ul id="country-list" class="country-list" role="list"></ul>
-
-     
+      <section class="results">
+        <ul id="country-list" class="country-list"></ul>
         <div id="country-info" class="country-info-container"></div>
       </section>
     </main>
 
-
-    <script id="country-item-template" type="text/x-handlebars-template">
-      <li class="country-item" role="listitem" data-name="{{name.common}}">
-        <img src="{{flags.svg}}" alt="Прапор {{name.common}}" width="40" height="25" />
-        <div class="country-item-text">
-          <strong>{{name.common}}</strong>
-          {{#if capital}}
-            <div class="small">Столиця: {{capital.[0]}}</div>
-          {{/if}}
-        </div>
+    
+    <template id="country-item-template">
+      <li class="country-item">
+        <img class="flag" />
+        <span class="name"></span>
       </li>
-    </script>
+    </template>
 
 
-    <script id="country-info-template" type="text/x-handlebars-template">
-      <article class="country-info" aria-label="Інформація про країну">
-        <header class="country-header">
-          <img src="{{flags.svg}}" alt="Прапор {{name.common}}" width="80" height="50" />
-          <h2>{{name.common}} <small>({{name.official}})</small></h2>
-        </header>
-        <dl>
-          {{#if capital}}
-            <dt>Столиця</dt><dd>{{capital.[0]}}</dd>
-          {{/if}}
-          {{#if population}}
-            <dt>Населення</dt><dd>{{population}}</dd>
-          {{/if}}
-          {{#if languages}}
-            <dt>Мови</dt>
-            <dd>
-              {{#each languages}}
-                {{this}}{{#unless @last}}, {{/unless}}
-              {{/each}}
-            </dd>
-          {{/if}}
-        </dl>
+    <template id="country-info-template">
+      <article class="country-info">
+        <img class="flag-big" />
+        <h2 class="country-title"></h2>
+        <p class="capital"></p>
+        <p class="population"></p>
+        <p class="languages"></p>
       </article>
-    </script>
+    </template>
 
- 
     <script type="module" src="./script.js"></script>
   </body>
 </html>
